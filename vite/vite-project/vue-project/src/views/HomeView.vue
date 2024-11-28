@@ -44,22 +44,22 @@ function majuscula(){
 <!--    Cat: {{imgcat}}-->
 
 <!-- Para que sea la varible reactiva, poneos ":" antes de src-->
-    <img v-if="imgcat" :src="imgcat" alt="foto moix">
-    <img v-if="!imgcat" src="https://img.freepik.com/vector-premium/icono-carga-vectorial-vector-editable-diseno-elementos_898898-180.jpg?w=740" alt="foto moix">
+    <img v-if="imgcat" style="width: 200px; height: 200px;" :src="imgcat" alt="foto moix">
+    <img v-if="!imgcat" style="width: 200px; height: 200px;" src="https://img.freepik.com/vector-premium/icono-carga-vectorial-vector-editable-diseno-elementos_898898-180.jpg?w=740" alt="foto moix">
 
 
-    <img v-for="cat of cats" :src="cat.url" alt="">
+    <img v-for="cat of cats" :src="cat.url" alt="" style="width: 200px; height: 200px;">
 
 <!--    tmb podemos hacer-->
 <h1> funciona con un for dentro de un DIV </h1>
     <div v-for="cat of cats">
-      <img :src="cat.url" alt="">
+      <img :src="cat.url" alt="" style="width: 200px; height: 200px;">
       <p> Width: {{cat.width}} - Height: {{cat.height}}</p>
     </div>
 
     <h1> Uso de template para q no se ponga el DIV</h1>
     <template v-for="cat of cats">
-      <img :src="cat.url" alt="">
+      <img :src="cat.url" alt="" style="width: 200px; height: 200px;">
       <p> Width: {{cat.width}} - Height: {{cat.height}}</p>
     </template>
 
