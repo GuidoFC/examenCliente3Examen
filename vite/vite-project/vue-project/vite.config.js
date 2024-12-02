@@ -23,4 +23,8 @@ export default defineConfig({
       usePolling: true, // Activamos el polling para detectar cambios automáticamente
     },
   },
+  build:{
+    outDir: '../dist',
+    emptyOutDir: true,
+  }
 })

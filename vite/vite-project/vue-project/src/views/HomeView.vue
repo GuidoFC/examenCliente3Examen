@@ -26,7 +26,7 @@ onMounted(async () => {
 // de forma dinamica
 const saluda = ref("hola");
 
-const fontSize = ref(20)
+const fontSize = ref(12)
 
 
 function majuscula(){
@@ -67,8 +67,10 @@ function desincrementaFuente(){
 
 <!--    tmb podemos hacer-->
 <h1> funciona con un for dentro de un DIV </h1>
-    <div v-for="cat of cats">
+<!--    Ponemos una condicion booleana si fontSize < 10 se pone background rojo-->
+    <div v-for="cat of cats" :class="{'a': true, 'error': fontSize < 10}">
       <img :src="cat.url" alt="" style="width: 200px; height: 200px;">
+<!--      aplicando el font size -->
       <p :style="{'font-size' : fontSize + 'px'}"> Width: {{cat.width}} - Height: {{cat.height}}</p>
     </div>
 
@@ -89,5 +91,9 @@ function desincrementaFuente(){
 
  *{
    background: #31c075;
+ }
+
+ .error{
+   background: red;
  }
 </style>
