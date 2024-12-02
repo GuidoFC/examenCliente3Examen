@@ -26,9 +26,19 @@ onMounted(async () => {
 // de forma dinamica
 const saluda = ref("hola");
 
+const fontSize = ref(20)
+
 
 function majuscula(){
   saluda.value = saluda.value.toUpperCase();
+}
+
+function incrementaFuente(){
+  fontSize.value ++;
+}
+
+function desincrementaFuente(){
+  fontSize.value --;
 }
 
 
@@ -39,6 +49,11 @@ function majuscula(){
     <!--    Los eventos van con @-->
 
     <button @click="majuscula()">Majuscula</button>
+    <button @click="incrementaFuente()">Font mas</button>
+    <button @click="desincrementaFuente()">Font menos</button>
+
+    <p>{{fontSize}}</p>
+
 <!--    String con {{ }}-->
     <h1 v-if ="saluda ==='HOLA'">{{saluda}} </h1>
 <!--    Cat: {{imgcat}}-->
@@ -54,7 +69,7 @@ function majuscula(){
 <h1> funciona con un for dentro de un DIV </h1>
     <div v-for="cat of cats">
       <img :src="cat.url" alt="" style="width: 200px; height: 200px;">
-      <p> Width: {{cat.width}} - Height: {{cat.height}}</p>
+      <p :style="{'font-size' : fontSize + 'px'}"> Width: {{cat.width}} - Height: {{cat.height}}</p>
     </div>
 
     <h1> Uso de template para q no se ponga el DIV</h1>
@@ -67,4 +82,12 @@ function majuscula(){
 
     <!--    <TheWelcome />-->
   </main>
+  <!--  //Con style scoped hacemos que que solo afecte a un componente y no a todos los componenetes-->
 </template>
+
+<style scoped>
+
+ *{
+   background: #31c075;
+ }
+</style>
