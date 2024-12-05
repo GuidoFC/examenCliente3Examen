@@ -14,10 +14,12 @@
 
 
 <script setup>
-import {onMounted, ref} from "vue";
+// Explicación del orden
+// Siempre tengo que importar priemero la libreria del framwork, luego mis Service que importo
+import {ref, onMounted} from "vue";
 import {AeropoertService} from "@/service/AeropoertService.js";
 
-
+// después van las variables reactivas
 const aeroports = ref([])
 const aeroportsFilter = ref([])
 
@@ -25,6 +27,7 @@ const valorCerca = ref("")
 
 const serviceAeropuerto = new AeropoertService();
 
+// despues las funciones de controlador
 async function carregarAeropuertos(){
   aeroports.value = await serviceAeropuerto.load();
 }
@@ -33,7 +36,7 @@ async function cercaAeropuerto(){
   aeroportsFilter.value =  serviceAeropuerto.cerca(aeroports.value, valorCerca.value)
 }
 
-
+// y finalmente onMounted
 onMounted(async () => {
 
  await carregarAeropuertos();
