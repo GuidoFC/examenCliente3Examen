@@ -6,6 +6,8 @@ export class CatService {
 
     #URL_API_CAT = "https://api.thecatapi.com/v1/images";
 
+    #BASE_URL = "https://api.thecatapi.com/v1";
+
     async findAll(limit = 10) {
         const url = `${this.#URL_API_CAT}/?limit=${limit}`;
         const response = await fetch(url, {
@@ -17,5 +19,31 @@ export class CatService {
 
         const data = await response.json();
         return data.map((cat) => new Cat(cat.id, cat.name, cat.url, cat.widht, cat.height));
+    }
+
+    async  uploadImages(image) {
+
+        const url = this.#BASE_URL + "/images/upload";
+
+        // Crear un objeto FormData para adjuntar el archivo
+        const formData = new FormData();
+
+
+        formData.append("file", image);
+
+        fetch(url, {
+            method: "POST",
+            headers: new Headers({
+                "x-api-key": this.#API_KEY,
+            }),
+            body: formData, // Pasar el FormData como body
+        })
+            .then((response) => response.json())
+            .then((result) => console.log(result))
+            .catch(function (e) {
+                console.log("Error:", e);
+                e.response &&
+                e.response.text().then((text) => console.log("Response Text:", text));
+            });
     }
 }
