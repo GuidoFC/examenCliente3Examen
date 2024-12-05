@@ -21,7 +21,7 @@ export class CatService {
         return data.map((cat) => new Cat(cat.id, cat.name, cat.url, cat.widht, cat.height));
     }
 
-    async  uploadImages(image) {
+    async uploadImages(image) {
 
         const url = this.#BASE_URL + "/images/upload";
 
@@ -31,19 +31,15 @@ export class CatService {
 
         formData.append("file", image);
 
-        fetch(url, {
+        const response = await fetch(url, {
             method: "POST",
             headers: new Headers({
                 "x-api-key": this.#API_KEY,
             }),
             body: formData, // Pasar el FormData como body
         })
-            .then((response) => response.json())
-            .then((result) => console.log(result))
-            .catch(function (e) {
-                console.log("Error:", e);
-                e.response &&
-                e.response.text().then((text) => console.log("Response Text:", text));
-            });
+
+        const data = await response.json();
+
     }
 }
