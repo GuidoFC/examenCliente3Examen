@@ -8,10 +8,10 @@
     <lista :titol= "`Aeropuertos de ${valorCerca}`" :aeroports="aeroportsFilter">
 
       <!-- Slot per defecte perque no té nom -->
-      <template v-slot:header>
-        <h2>Aeroports filtrats de {{valorCerca}}</h2>
-        <p>Número de resultats: {{aeroportsFilter.length}}</p>
-      </template>
+<!--      <template v-slot:header>-->
+<!--        <h2>Aeroports filtrats de {{valorCerca}}</h2>-->
+<!--        <p>Número de resultats: {{aeroportsFilter.length}}</p>-->
+<!--      </template>-->
 
       <!-- Slot "footer" -->
       <template v-slot:footer>

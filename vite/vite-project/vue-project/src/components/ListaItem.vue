@@ -6,8 +6,11 @@ const variableABC = defineProps({
   }
 })
 
+const emit =  defineEmits(['editaaeroport']) // es un evento
+
 function edita() {
   console.log("Edita " + variableABC.descriptionBB)
+  emit('editaaeroport', "Paso el aeropuerto al padre" + variableABC.descriptionBB, "HELLO WORD") // es un evento con 2 parametros
 }
 
 </script>

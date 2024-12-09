@@ -1,5 +1,5 @@
 <script setup>
-
+import {ref, onMounted} from "vue";
 import ListaItem from "@/components/ListaItem.vue";
 
 defineProps({
@@ -14,6 +14,17 @@ defineProps({
   }
 });
 
+const updateAeroporto = ref('');
+const saludaAeroport = ref('');
+
+function actualitzaupdate(aeroport, saludo) {
+  console.log("Me han llamado")
+  console.log(aeroport);
+  console.log(saludo);
+  updateAeroporto.value = aeroport;
+  saludaAeroport.value = saludo;
+}
+
 </script>
 
 <template>
@@ -21,12 +32,15 @@ defineProps({
   <div>
     <slot name="header">
       <h1>{{ titol }}</h1>
-      <p> Aeropuerto XXX actualizado</p>
+      <p v-if="updateAeroporto"> {{saludaAeroport}} Aeropuerto {{ updateAeroporto }} actualizado</p>
     </slot>
 
 
     <ul>
-      <ListaItem v-for="aeroport in aeroports" :descriptionBB="`${aeroport.codi} -
+      <ListaItem v-for="aeroport in aeroports"
+
+      @editaaeroport="actualitzaupdate"
+                 :descriptionBB="`${aeroport.codi} -
       ${aeroport.nom} - ${ aeroport.ciutat }` "/>
 <!--      <li v-for="aeroport in aeroports">-->
 <!--        {{ aeroport.codi }} - {{ aeroport.nom }} - {{ aeroport.ciutat }}-->
